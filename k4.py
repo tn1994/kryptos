@@ -30,7 +30,9 @@ def calc_binary(string  # type: str
 
     print()
     print("To hex")
+    hex_list = []
     for item in listStr:
+        hex_list.append(hex(ord(item)))
         print(hex(ord(item)), end=" ")
 
     print()
@@ -41,11 +43,13 @@ def calc_binary(string  # type: str
         print(int(ord(item)), end=" ")
 
     print()
-    print("\nTo bin")
+    print("To bin")
+    bin_list = []
     for item in listStr:
+        bin_list.append(bin(ord(item)))
         print(bin(ord(item)), end=" ")
 
-    return dec_list
+    return hex_list, dec_list, bin_list
 
 
 def calc_diff(a_list,  # type:list
@@ -67,19 +71,27 @@ def main():
     replaced_k4 = replace_from_hints(original_k4=k4)
     print(replaced_k4)
 
-    dec_list_from_k4 = calc_binary(string=k4)
-    dec_list_from_replaced_k4 = calc_binary(string=replaced_k4)
+    hex_list_k4, dec_list_k4, bin_list_k4 = calc_binary(string=k4)
+    hex_list_rep_k4, dec_list_from_rep_k4, bin_list_rep_k4 = calc_binary(string=replaced_k4)
 
     print()
-    print('dec_list_from_k4:')
-    print(dec_list_from_k4)
+    print('dec_list_k4:')
+    print(dec_list_k4)
     print()
-    print('dec_list_from_replaced_k4')
-    print(dec_list_from_replaced_k4)
+    print('dec_list_from_rep_k4')
+    print(dec_list_from_rep_k4)
 
-    diff_list = calc_diff(a_list=dec_list_from_k4, b_list=dec_list_from_replaced_k4)
+    diff_hex_list = calc_diff(a_list=dec_list_k4, b_list=dec_list_from_rep_k4)
     print()
-    print(diff_list)
+    print(diff_hex_list)
+
+    diff_dec_list = calc_diff(a_list=dec_list_k4, b_list=dec_list_from_rep_k4)
+    print()
+    print(diff_dec_list)
+
+    diff_bin_list = calc_diff(a_list=dec_list_k4, b_list=dec_list_from_rep_k4)
+    print()
+    print(diff_bin_list)
 
 
 if __name__ == '__main__':
